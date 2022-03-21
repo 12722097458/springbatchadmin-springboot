@@ -1,4 +1,4 @@
-package com.ityj.config;
+package com.ityj.batch.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

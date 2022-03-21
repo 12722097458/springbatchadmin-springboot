@@ -1,4 +1,4 @@
-package com.ityj.config;
+package com.ityj.batch.config;
 
 import org.springframework.batch.core.configuration.JobRegistry;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
