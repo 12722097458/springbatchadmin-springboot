@@ -3,14 +3,7 @@ server:
   port: 8080
 
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.137.110/spring_batch?serverTimezone=Asia/Shanghai
-    username: root
-    password: root
   batch:
     job:
       enabled: false
-
-
 

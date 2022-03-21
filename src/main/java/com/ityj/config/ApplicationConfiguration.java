@@ -19,7 +19,7 @@ public class ApplicationConfiguration {
 
         Resource[] resources = {
                 new ClassPathResource("org/springframework/batch/admin/bootstrap/batch.properties"),
-                new ClassPathResource("batch-mysql.properties")};
+                new ClassPathResource("batch-h2.properties")};
 
         PropertySourcesPlaceholderConfigurer bean = new PropertySourcesPlaceholderConfigurer();
         bean.setLocations(resources);
