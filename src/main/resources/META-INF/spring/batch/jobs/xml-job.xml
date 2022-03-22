@@ -6,13 +6,60 @@
 
     <!-- This is the XML way to define jobs but it will be very handy if you already have jobs like this -->
 
+    <bean id="myStep" class="com.ityj.batch.tasklet.MyTestTasklet"/>
+    <bean id="myStep2" class="com.ityj.batch.tasklet.MyTestTasklet2"/>
+    <bean id="myStep3" class="com.ityj.batch.tasklet.MyTestTasklet3"/>
+
     <batch:job id="helloJobWithXml">
         <batch:step id="stepTest01">
-            <batch:tasklet ref="myStep" start-limit="1"/>
+            <batch:tasklet ref="myStep"/>
         </batch:step>
-
     </batch:job>
 
-    <bean id="myStep" class="com.ityj.batch.tasklet.MyTestTasklet"/>
+    <batch:job id="chunkJob">
+        <batch:step id="chunkStep">
+            <batch:tasklet>
+                <batch:chunk reader="myItemReader" writer="myItemWriter" processor="myItemProcessor" commit-interval="10">
+                </batch:chunk>
+            </batch:tasklet>
+        </batch:step>
+    </batch:job>
+
+
+    <batch:job id="flowJobDemo">
+        <batch:flow id="startFlowDemo" parent="flowDemo"/>
+    </batch:job>
+
+    <batch:flow id="flowDemo">
+        <batch:step id="flowStep01" next="flowStep02">
+            <batch:tasklet ref="myStep"/>
+        </batch:step>
+        <batch:step id="flowStep02">
+            <batch:tasklet ref="myStep2"/>
+        </batch:step>
+    </batch:flow>
+
+    <bean id="taskExecutor" class="org.springframework.core.task.SimpleAsyncTaskExecutor"/>
+
+    <batch:job id="splitJobDemo">
+
+        <batch:split id="split01" next="afterSplitStep" task-executor="taskExecutor">
+            <batch:flow>
+                <batch:step id="split01-step01">
+                    <batch:tasklet ref="myStep"/>
+                </batch:step>
+            </batch:flow>
+            <batch:flow>
+                <batch:step id="split01-step02">
+                    <batch:tasklet ref="myStep2"/>
+                </batch:step>
+            </batch:flow>
+        </batch:split>
+
+        <batch:step id="afterSplitStep">
+            <batch:tasklet ref="myStep3"/>
+        </batch:step>
+    </batch:job>
+
 
 </beans>

@@ -1,5 +1,6 @@
 package com.ityj.batch.jobconfig;
 
+import com.ityj.batch.chunk.MyItemReader;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -8,13 +9,18 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
+import org.springframework.batch.core.step.tasklet.TaskletStep;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Configuration
 @Slf4j
+//@EnableBatchProcessing
 public class HelloWorldJobConfig {
 
     @Autowired
@@ -42,7 +48,7 @@ public class HelloWorldJobConfig {
                 }).build();
     }
 
-    private Step step2() {
+    private TaskletStep step2() {
         return stepBuilderFactory.get("step2")
                 .tasklet(new Tasklet() {
                     @Override
@@ -51,6 +57,19 @@ public class HelloWorldJobConfig {
                         return RepeatStatus.FINISHED;
                     }
                 }).build();
+    }
+
+    @Bean
+    public MyItemReader myItemReader() {
+        return new MyItemReader(generateData());
+    }
+
+    private List<Integer> generateData() {
+        List<Integer> data = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            data.add(i + 1);
+        }
+        return data;
     }
 
 }
