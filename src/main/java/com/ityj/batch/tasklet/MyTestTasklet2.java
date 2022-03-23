@@ -22,6 +22,7 @@ public class MyTestTasklet2 implements Tasklet {
         StepContext stepContext = pChunkContext.getStepContext();
         Map<String, Object> jobParameters = stepContext.getJobParameters();
         log.info("Received job parameters2:{}", jobParameters.toString());
+        log.info("Received data:{}", pChunkContext.getStepContext().getJobExecutionContext().get("jobData"));
         return RepeatStatus.FINISHED;
     }
 }
