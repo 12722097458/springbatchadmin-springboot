@@ -4,8 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
-    <!-- This is the XML way to define jobs but it will be very handy if you already have jobs like this -->
-
     <bean id="myStep" class="com.ityj.batch.tasklet.MyTestTasklet"/>
     <bean id="myStep2" class="com.ityj.batch.tasklet.MyTestTasklet2"/>
     <bean id="myStep3" class="com.ityj.batch.tasklet.MyTestTasklet3"/>
