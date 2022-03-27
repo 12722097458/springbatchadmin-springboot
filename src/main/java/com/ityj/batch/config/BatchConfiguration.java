@@ -22,15 +22,14 @@ public class BatchConfiguration {
     }
 
     @Bean
-    public static JobRegistryBeanPostProcessor jobRegistryBeanPostProcessor(JobRegistry jobRegistry) {
+    public JobRegistryBeanPostProcessor jobRegistryBeanPostProcessor(JobRegistry jobRegistry) {
         JobRegistryBeanPostProcessor jobRegistryBeanPostProcessor = new JobRegistryBeanPostProcessor();
         jobRegistryBeanPostProcessor.setJobRegistry(jobRegistry);
         return jobRegistryBeanPostProcessor;
     }
 
     @Bean
-    public JobBuilderFactory jobBuilderFactory()
-    {
+    public JobBuilderFactory jobBuilderFactory() {
         return new JobBuilderFactory(jobRepository);
     }
 

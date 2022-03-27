@@ -10,3 +10,7 @@ spring:
     console:
       enabled: true
       path: /h2-console
+quartz:
+  job:
+    jobName: helloWorldJob|helloJobWithXml
+    cronExpression: 0/5 * * * * ?|0/11 * * * * ?
