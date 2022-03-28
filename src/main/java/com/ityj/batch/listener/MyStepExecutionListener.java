@@ -15,6 +15,8 @@ public class MyStepExecutionListener implements StepExecutionListener {
     @Override
     public ExitStatus afterStep(StepExecution stepExecution) {
         log.info("afterStep:{}...", stepExecution.getStepName());
+
+        log.info("ExitCode:{}", stepExecution.getExitStatus().getExitCode());
         return ExitStatus.COMPLETED;
     }
 }

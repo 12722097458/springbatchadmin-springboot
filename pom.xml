@@ -10,8 +10,8 @@
 		<relativePath/>
 	</parent>
 
-	<groupId>com.ityj.springbatch</groupId>
-	<artifactId>SpringBatch</artifactId>
+	<groupId>com.ityj.batch</groupId>
+	<artifactId>springbatchadmin-springboot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -69,6 +69,16 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.5</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
 			</plugin>
 
 		</plugins>

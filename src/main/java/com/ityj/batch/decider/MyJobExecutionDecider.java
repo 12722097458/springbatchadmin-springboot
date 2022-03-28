@@ -14,7 +14,6 @@ public class MyJobExecutionDecider  implements JobExecutionDecider {
     @Override
     public FlowExecutionStatus decide(JobExecution jobExecution, StepExecution stepExecution) {
         Map<String, JobParameter> parameters = jobExecution.getJobParameters().getParameters();
-        log.info("Job Parameter is: {}", parameters);
 
         if (parameters.containsKey("skip")) {
             return new FlowExecutionStatus("SKIP");

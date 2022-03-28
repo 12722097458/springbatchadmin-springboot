@@ -16,7 +16,6 @@ public class QuartzTest {
                 .build();
         scheduler.scheduleJob(jobDetail, trigger);
         scheduler.start();
-
     }
 
 }

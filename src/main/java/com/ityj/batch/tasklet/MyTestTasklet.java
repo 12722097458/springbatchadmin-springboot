@@ -1,6 +1,5 @@
 package com.ityj.batch.tasklet;
 
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
@@ -14,9 +13,8 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class MyTestTasklet implements Tasklet {
 
-    @SneakyThrows
     @Override
-    public RepeatStatus execute(StepContribution pStepContribution, ChunkContext pChunkContext) {
+    public RepeatStatus execute(StepContribution pStepContribution, ChunkContext pChunkContext) throws InterruptedException {
         log.info("Into MyTestTasklet...");
         TimeUnit.SECONDS.sleep(3);
         StepContext stepContext = pChunkContext.getStepContext();
