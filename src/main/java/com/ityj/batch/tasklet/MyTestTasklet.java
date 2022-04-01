@@ -16,7 +16,7 @@ public class MyTestTasklet implements Tasklet {
     @Override
     public RepeatStatus execute(StepContribution pStepContribution, ChunkContext pChunkContext) throws InterruptedException {
         log.info("Into MyTestTasklet...");
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(1);
         StepContext stepContext = pChunkContext.getStepContext();
         Map<String, Object> jobParameters = stepContext.getJobParameters();
         log.info("Received job parameters:{}", jobParameters.toString());

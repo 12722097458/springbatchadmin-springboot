@@ -30,10 +30,7 @@
     </batch:job>
 
     <!--Step config with flow-->
-    <batch:job id="flowJobDemo">
-        <batch:listeners>
-            <batch:listener ref="myJobListener"/>
-        </batch:listeners>
+    <batch:job id="flowJobDemo" parent="myJobListener_step">
         <batch:flow id="startFlowDemo" parent="flowDemo"/>
     </batch:job>
 
@@ -58,9 +55,9 @@
     </batch:job>
 
     <!--decider Test-->
-    <batch:job id="deciderJob">
+    <batch:job id="deciderJob" restartable="true">
         <batch:step id="first" next="decision">
-            <tasklet ref="myStep" />
+            <tasklet ref="myStep"/>
         </batch:step>
 
         <batch:decision id="decision" decider="decider">
@@ -68,7 +65,7 @@
             <batch:next on="CONTINUE" to="nextStep" />
         </batch:decision>
 
-        <batch:step id="nextStep" next="endStep">
+        <batch:step id="nextStep" next="endStep" allow-start-if-complete="true">
             <batch:tasklet ref="myStep2"/>
         </batch:step>
 
@@ -78,16 +75,31 @@
         </batch:step>
     </batch:job>
 
-
     <batch:flow id="flowDemo">
-        <batch:step id="flowStep01" next="flowStep02">
+        <batch:step id="flowStep01" next="flowStep02" parent="myStepListener_step">
             <batch:tasklet ref="myStep"/>
-            <batch:listeners>
-                <batch:listener ref="myStepListener"/>
-            </batch:listeners>
         </batch:step>
         <batch:step id="flowStep02">
             <batch:tasklet ref="myStep2"/>
+        </batch:step>
+    </batch:flow>
+
+    <!--parent-->
+    <batch:step id="myStepListener_step" abstract="true">
+        <batch:listeners>
+            <batch:listener ref="myStepListener"/>
+        </batch:listeners>
+    </batch:step>
+
+    <batch:job id="myJobListener_step" abstract="true">
+        <batch:listeners>
+            <batch:listener ref="myJobListener"/>
+        </batch:listeners>
+    </batch:job>
+
+    <batch:flow id="myFlow_step">
+        <batch:step id="flow01">
+            <batch:tasklet ref="myStep"/>
         </batch:step>
     </batch:flow>
 

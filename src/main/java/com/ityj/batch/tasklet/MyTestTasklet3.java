@@ -12,6 +12,7 @@ public class MyTestTasklet3 implements Tasklet {
     @Override
     public RepeatStatus execute(StepContribution pStepContribution, ChunkContext pChunkContext) {
         log.info("Into MyTestTasklet3...");
+        Double.valueOf("sdfds");
         return RepeatStatus.FINISHED;
     }
 }

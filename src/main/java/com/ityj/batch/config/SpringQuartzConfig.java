@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
@@ -19,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-//@Configuration
+@Configuration
 public class SpringQuartzConfig {
 
     @Value("#{'${quartz.job.jobName}'.split('\\|')}")

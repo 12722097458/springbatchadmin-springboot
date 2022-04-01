@@ -9,7 +9,7 @@ import org.springframework.batch.item.ExecutionContext;
 public class MyJobExecutionListener implements JobExecutionListener {
     @Override
     public void beforeJob(JobExecution jobExecution) {
-        log.info("Before job:{}", jobExecution.getJobInstance().getJobName());
+        log.info("JobListener --> Before job:{}", jobExecution.getJobInstance().getJobName());
         ExecutionContext executionContext = jobExecution.getExecutionContext();
         // pass data through executionContext
         executionContext.put("jobData", "jobListener");

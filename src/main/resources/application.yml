@@ -1,6 +1,6 @@
 server:
   servlet-path: /*
-  port: 8080
+  port: 8080        # http://localhost:8080/jobs
 
 spring:
   batch:

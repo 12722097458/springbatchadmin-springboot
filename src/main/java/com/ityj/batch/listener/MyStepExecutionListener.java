@@ -9,12 +9,12 @@ import org.springframework.batch.core.StepExecutionListener;
 public class MyStepExecutionListener implements StepExecutionListener {
     @Override
     public void beforeStep(StepExecution stepExecution) {
-        log.info("beforeStep:{}...", stepExecution.getStepName());
+        log.info("StepListener --> beforeStep:{}...", stepExecution.getStepName());
     }
 
     @Override
     public ExitStatus afterStep(StepExecution stepExecution) {
-        log.info("afterStep:{}...", stepExecution.getStepName());
+        log.info("StepListener --> afterStep:{}...", stepExecution.getStepName());
 
         log.info("ExitCode:{}", stepExecution.getExitStatus().getExitCode());
         return ExitStatus.COMPLETED;
